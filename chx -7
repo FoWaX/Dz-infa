@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+#include <cmath>
+#include <iomanip>
+int main()
+{
+	double b, x;
+	cin >> x;
+	b = cosh(pow(x, -7)) + log(2 * x) / log(7. / 8);
+	cout << fixed << setprecision(5) << b - int(b) << endl << int (b);
+	return 0;
+}
