@@ -1,0 +1,25 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+int main()
+{
+	SetConsoleCP(1251);     
+	SetConsoleOutputCP(1251);
+	int a;
+	cin >> a;
+	cout << "Задание а: \n";
+	switch (a)
+	{
+	case 1: cout << "влево \n"; break;
+	case 2: cout << "вверх \n"; break;
+	case 3: cout << "вправо \n"; break;
+	case 4: cout << "вниз \n"; break;
+	}
+	cout << "Задание b: \n";
+	switch (a)
+	{
+	case 1:case 3: cout << "Горизонтально"; break;
+	case 2:case 4: cout << "Вертикально"; break;
+	}
+}
+
