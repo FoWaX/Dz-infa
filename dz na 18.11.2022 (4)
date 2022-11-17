@@ -1,0 +1,15 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void chis(int& a,int b)
+{
+	a += b;
+}
+int main()
+{
+	int a,b;
+	cin >> a >> b;
+	chis(a, b);
+	cout << a;
+}
