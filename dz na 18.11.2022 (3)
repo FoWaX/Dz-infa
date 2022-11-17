@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool otr(int& a)
+{
+	a = -a;
+	if (a == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+int main()
+{
+	int b;
+	cin >> b;
+	cout << otr(b) << " " << b;
+}
+
+
