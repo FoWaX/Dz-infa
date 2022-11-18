@@ -16,6 +16,6 @@ int main()
 	cin >> n;
 	d = storona(n);
 	b = gipoten(d);
-	p = 3 * d + b;
+	p = 2 * d + b;
 	cout << p;
 }
