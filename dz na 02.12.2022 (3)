@@ -1,0 +1,30 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+	int n = 1;
+	double e = 0.0000001;
+	double x;
+	cin >> x;
+	double f = pow(x, 2);
+	double a = 2;
+	double d = n * (n - 1) * (f / a);
+	double s = 0;
+	int i = 4;
+	do
+	{
+		s += d;
+		f *= x * x;
+		n += 1;
+		a *= (i - 1) * i;
+		i += 2;
+		d = n * (n - 1) * (f / a);
+	} while (d > e);
+	cout << s;
+}
+
+
