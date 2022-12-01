@@ -1,0 +1,20 @@
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	double b1, b2, bn;
+	b1 = 1;
+	b2 = 2;
+	for (int i = 3;i <= n;i++)
+	{
+		bn = b2 / (b1 + 1);
+		b1 = b2;
+		b2 = bn;
+	}
+	cout << fixed << setprecision(6) << bn;
+}
