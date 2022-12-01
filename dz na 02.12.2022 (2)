@@ -1,0 +1,22 @@
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+	int n = 1;
+	int k,x;
+	cin >> k >> x;
+	double s = 0;
+	double a = 1;
+	double f = pow(x, 3);
+	for (int i = n;i <= k;i++)
+	{
+		a *= i;
+		s += a * f;
+		f *= x * x;
+	}
+	cout << s;
+}
