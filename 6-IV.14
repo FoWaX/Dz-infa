@@ -16,7 +16,7 @@ int main()
     {
         for (int z = 0;z < n;z++)
         {
-            cout << a[i][z] << "";
+            cout << a[i][z] << " ";
         }
         cout << endl;
     }
