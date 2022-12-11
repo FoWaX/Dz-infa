@@ -16,7 +16,7 @@ int main()
     for (int i = 0; i < n;i++)
     {
         int f,x,g;
-        f = -1;
+        f = -10;
         x = a[i];
         flag = 0;
         if ((x / 10) % 10 == x % 10)
