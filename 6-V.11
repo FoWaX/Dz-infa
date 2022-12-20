@@ -3,25 +3,25 @@ using namespace std;
 
 int main()
 {
-    const int n = 10;
-    int a[n];
+    int n = 10;
+    int a[10];
     int flag;
     int k = 0;
-    for (int i = 0; i < n;i++)
+    for (int i = 0; i < n; i++)
     {
         int q;
         cin >> q;
         a[i] = q;
     }
-    for (int i = 0; i < n;i++)
+    for (int i = 0; i < n; i++)
     {
-        int f,x,g;
+        int f, x, g;
         f = -10;
         x = a[i];
         flag = 0;
         if ((x / 10) % 10 == x % 10)
         {
-            f = x%10;
+            f = x % 10;
         }
         while (x > 0)
         {
@@ -34,20 +34,18 @@ int main()
         }
         if (flag == 1)
         {
-            for (int z = i;z < n-1;z++)
+            cout << a[i] << endl;
+            for (int z = i; z < n - 1; z++)
             {
                 a[z] = a[z + 1];
             }
-            k += 1;
+            n--;
             i--;
         }
     }
-    for (int i = 0; i < n-k;i++)
+    for (int i = 0; i < n; i++)
     {
         cout << a[i] << " ";
     }
-    
+    изменить!!!!
 }
-
-
-
