@@ -1,51 +1,67 @@
 #include <iostream>
 using namespace std;
 
+void f(int n, int* b, int& flag,int k)
+{
+    for (int i = 0; i<k;i++)
+    {
+        for (int j = 0; j < k; j++)
+        {
+            if (b[i] == b[j] && i!=j)
+            {
+                flag = 1;
+                break;
+            }
+        }
+    }
+}
+
 int main()
 {
-    int n = 10;
-    int a[10];
-    int flag;
-    int k = 0;
+    int n,k,x,z,flag;
+    cin >> n;
+    int *a = new int[n];
     for (int i = 0; i < n; i++)
     {
-        int q;
-        cin >> q;
-        a[i] = q;
+        cin >> a[i];
     }
     for (int i = 0; i < n; i++)
     {
-        int f, x, g;
-        f = -10;
-        x = a[i];
         flag = 0;
-        if ((x / 10) % 10 == x % 10)
-        {
-            f = x % 10;
-        }
+        k = 0;
+        x = a[i];
         while (x > 0)
         {
-            g = x % 10;
-            if (g != f)
-            {
-                flag = 1;
-            }
             x /= 10;
+            k++;
         }
-        if (flag == 1)
+        if (k > 1)
         {
-            cout << a[i] << endl;
-            for (int z = i; z < n - 1; z++)
+            int* b = new int[k];
+            x = a[i];
+            z = 0;
+            while (x > 0)
             {
-                a[z] = a[z + 1];
+                b[z] = x % 10;
+                x /= 10;
+                z++;
             }
-            n--;
-            i--;
+            f(n, b, flag, k);
+            if (flag == 0)
+            {
+                for (int j = i; j <n; j++)
+                {
+                    a[j] = a[j + 1];
+                }
+                n--;
+                i--;
+            }
+            delete[] b;
         }
     }
     for (int i = 0; i < n; i++)
     {
         cout << a[i] << " ";
     }
-    изменить!!!!
+    delete[] a;
 }
