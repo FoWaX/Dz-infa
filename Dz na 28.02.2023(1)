@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int F(int a,int b,int c)
+{
+    int g = 0;
+    if (c == 927)
+    {
+        return 0;
+    }
+    else
+    {
+        g = c;
+        c = a + b + c;
+        a = b;
+        b = g;
+        cout << c << endl;
+        return F(a,b,c);
+    }
+}
+
+int main()
+{
+    F(0,0,1);
+}
+
