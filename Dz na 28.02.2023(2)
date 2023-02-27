@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int F(int a[], int i)
+{
+    if (i < 4)
+    {
+        a[i + 1] *= a[i];
+        i++;
+        return F(a, i);
+    }
+    else
+    {
+        cout << a[i];
+        return 0;
+    }
+}
+
+int main()
+{
+    int a[5];
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> a[i];
+    }
+    F(a,0);
+}
+
