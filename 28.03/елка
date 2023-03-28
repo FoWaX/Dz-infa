@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+void f(int x, int y)
+{
+    int i; 
+
+    for (i = 0; i < x; i++)
+        putchar(' ');
+    for (i = 0; i < y; i++)
+        putchar('*');
+    putchar('\n');
+}
+
+void btree(int a, int b)
+{
+    for (int i = 1; i <= a; i++)
+        f(b - i, i * 2 - 1);
+}
+
+void tree(int i, int n, int z)
+{
+    if (i == n)
+        return;
+    else {
+        btree(i + 1, z);
+    }
+    tree(i + 1, n, z);
+}
+int main()
+{
+    int n;
+    cin >> n;
+    tree(1, n + 1, n + 2);
+    return 0;
+}
