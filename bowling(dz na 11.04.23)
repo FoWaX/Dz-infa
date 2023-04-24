@@ -1,0 +1,154 @@
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class BowlingBall {
+	int weight;
+	string color;
+public:
+	static int count;
+	BowlingBall() {
+		count++;
+	} // = default;
+
+	BowlingBall(int weight, string color) {
+		count++;
+		setParams(weight, color);
+	}
+
+	BowlingBall(const BowlingBall& other) {
+		setParams(other.weight, other.color);
+		count++;
+	}
+
+	bool setWeight(int weight) {
+		if (weight > 0) {
+			this->weight = weight;
+			return true;
+		}
+		return false;
+	}
+	bool setColor(string color) {
+		if (color != "") {
+			this->color = color;
+			return true;
+		}
+		return false;
+	}
+	int getWeight() {
+		return weight;
+	}
+	string getColor() {
+		return color;
+	}
+
+	void setParams(int weight, string color) {
+		setWeight(weight);
+		setColor(color);
+	}
+	void print() {
+		cout << weight << " (" << color << ")\n";
+	}
+
+	// ++b
+	BowlingBall& operator++() {
+		weight++;
+		return *this;
+	}
+	// b++
+	BowlingBall operator++(int) {
+		BowlingBall tmp(*this);
+		weight++;
+		return tmp;
+	}
+	bool operator <(const BowlingBall& other) {
+		return this->weight < other.weight;
+	}
+	bool operator >(const BowlingBall& other) {
+		return this->weight > other.weight;
+	}
+	bool operator ==(const BowlingBall& other) {
+		return (this->weight == other.weight) && (this->color == other.color);
+	}
+	static bool isGreater(BowlingBall& b1, BowlingBall& b2) {
+		if (b1.getWeight() > b2.getWeight()) {
+			return true;
+		}
+		else if (b1.getWeight() < b2.getWeight()) {
+			return false;
+		}
+		else {
+			return b1.getColor() > b2.getColor();
+		}
+	}
+};
+
+int BowlingBall::count = 0;
+
+int main()
+{
+	//нулевое задание
+	//BowlingBall b1(5, "red");
+	//(++b1).print();
+	//выводит 6. префиксный инкремент увеличивает значение веса шара на 1
+	// Префиксный инкримент изменяет поле данных веса шара. цвет не меняется
+	//BowlingBall b2(6, "yellow");
+	//(b2++).print();
+	// выводит 6. цвет также не меняется
+	//Постфиксный инкримент возвращает старое значение веса
+
+	//задание номер 2
+	/*int n = 10;
+	string* colors = new string[10];
+	colors[0] = "green";
+	colors[1] = "red";
+	colors[2] = "magenta";
+	colors[3] = "white";
+	colors[4] = "black";
+	colors[5] = "purple";
+	colors[6] = "gray";
+	colors[7] = "pink";
+	colors[8] = "blue";
+	colors[9] = "yellow";
+	BowlingBall* a = new BowlingBall[n];
+	a[0].setParams(7, colors[8]);
+	a[1].setParams(4, colors[5]);
+	a[2].setParams(3, colors[7]);
+	a[3].setParams(1, colors[9]);
+	a[4].setParams(8, colors[0]);
+	a[5].setParams(6, colors[3]);
+	a[6].setParams(2, colors[2]);
+	a[7].setParams(10, colors[4]);
+	a[8].setParams(13, colors[1]);
+	a[9].setParams(5, colors[6]);
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = n - 1; j > i; j--)
+		{
+			if (a[j] < a[j - 1])
+			{
+				swap(a[j], a[j - 1]);
+			}
+		}
+	}
+	for (int i = 0; i < n; i++)
+		a[i].print();*/
+
+	//задание номер 3
+	/*for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = n - 1; j > i; j--)
+		{
+			if (BowlingBall::isGreater(a[j], a[j - 1]))
+			{
+				swap(a[j], a[j - 1]);
+			}
+		}
+	}
+	for (int i = 0; i < n; i++)
+		a[i].print(); */
+
+
+}
