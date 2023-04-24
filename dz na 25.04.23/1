@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+template <typename T>
+class List
+{
+	struct Item
+	{
+		T inf;
+		Item* next;
+		Item(T x, Item* ref = nullptr) : inf(x), next(ref) {}
+	} *first = nullptr, * last = nullptr;
+
+public:
+	void add(T x)
+	{
+		Item* item = new Item(x);
+		if (last != nullptr)
+			last->next = item;
+		last = item;
+		if (first == nullptr)
+			first = last;
+	}
+
+	void print()
+	{
+		for (Item* t = first; t != nullptr; t = t->next)
+			cout << t->inf << " ";
+		cout << endl;
+	}
+
+	void duplicateEven()
+	{
+		if (first == nullptr)//проверяем, пуст ли список
+		{
+			return;
+		}
+		for (Item* t = first; t != nullptr; t = t->next)
+		{
+			if (t->inf % 2 == 0)
+			{
+				Item* newItem = new Item(t->inf, t->next);
+				t->next = newItem;
+				if (t == last)//случай, если добавляем элемент после последнего, тогда указательно надо поменять на последний элемент
+				{
+					last = newItem;
+				}
+				t = t->next;//чтобы не зациклиться
+			}
+		}
+	}
+};
+
+int main()
+{
+	List<int> lst;
+	lst.add(1);
+	lst.add(2);
+	lst.add(3);
+	lst.add(4);
+	lst.add(5);
+	lst.print();
+
+	lst.duplicateEven();
+	lst.print();
+	return 0;
+}
