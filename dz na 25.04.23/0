@@ -1,0 +1,93 @@
+#include <iostream>
+
+using namespace std;
+
+template <typename T>
+class List
+{
+	struct Item
+	{
+		T inf;
+		Item* next;
+		Item(T x, Item* ref = nullptr) : inf(x), next(ref) {}
+	} *first = nullptr, * last = nullptr;
+
+public:
+	void add(T x)
+	{
+		Item* item = new Item(x);
+		if (last != nullptr)
+			last->next = item;
+		last = item;
+		if (first == nullptr)
+			first = last;
+	}
+
+	void print()
+	{
+		for (Item* t = first; t != nullptr; t = t->next)
+			cout << t->inf << " ";
+		cout << endl;
+	}
+
+	void duplicateEven()
+	{
+		for (Item* t = first; t != nullptr; t = t->next)
+		{
+			if (t->inf % 2 == 0)
+			{
+				Item* newItem = new Item(t->inf, t->next);
+				t->next = newItem;
+
+			}
+		}
+	}
+
+	int clear()
+	{
+		if (first == nullptr)
+		{
+			return 0;
+		}// список пустой
+		if (first == last)//если он состоит из одного элемента
+		{
+			delete first;
+			first = nullptr;
+			last = nullptr;
+			return 0;
+		}
+			Item* t = first;//общий случай
+			while (t->next != last)
+				t = t->next;
+			delete last;
+			last = t;
+			last->next = nullptr;
+	}
+	
+	~List() //деструктор, очищаем память после работы со списком
+	{
+		while (first != nullptr) //пока первый не становится ноль
+		{
+			this->clear();
+		}
+	}
+
+};
+
+int main()
+{
+	List<int> lst;
+	lst.add(1);
+	lst.add(2);
+	lst.add(3);
+	lst.add(4);
+	lst.add(5);
+	lst.print();
+	lst.clear();
+	lst.~List();
+	lst.print();
+
+	// lst.duplicateEven();
+	// lst.print();
+	return 0;
+}
