@@ -1,0 +1,153 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class Vector {
+    T* arr_;
+    size_t size_{};
+    size_t capacity_{};
+
+    void addMemory()//добавление памяти
+    {
+        capacity_ *= 2;
+        T* temp = arr_;
+        arr_ = new T[capacity_];
+        for (size_t i = 0; i < size_:++i)
+        {
+            arr_[i] = temp[i];
+        }
+        delete[] temp;
+    }
+
+    template<typename T>
+    inline ostream& operator<<(ostream& os, const Vector<T>& vec) 
+    {
+        for (const T& val : vec) os << val << " ";
+        return os;
+    }
+
+public:
+    Vector()
+    {
+        arr_ = new T[1];
+        capacity_ = 1;
+    }
+    
+    bool isEmpty() const //проверка вектора на пустоту
+    {
+        return size_ == 0;
+    }
+
+    size_t size() const //получение размера вектора - метод
+    {
+        return size_;
+    }
+
+    size_t capacity() const //получение максимального размера вектора - метод
+    {
+        return capacity_;
+    }
+
+    void pushback(const T& value)//добавление эелемента - метод
+    {
+        if (size_ >= capacity_) addMemory();//проверка, если размер >= максимально возможного, то надо увеличить
+        arr_[size++] = value;
+    }
+
+    void remove(size_t index)//два случая. 1)если удалять в начале или в середине, и 2) если в конце. 
+    {
+        for (size_t i = index + 1; i < size_; ++i)//в первом случае надо удалить элемент и сдвинуть все правее данного на 1 ячейку и уменьшить размер на 1
+        {
+            arr_[i - 1] = arr_[i];//во втором случае достаточно уменьшения размера на один
+        }
+        --size_;
+    }
+
+    //операторы обращения по индексу
+    T& operator[](size_t index) // 1) возвращение обычной сслыки на элемент
+    { 
+        return arr_[index];
+    }
+
+    const T& operator[](size_t index) const //2) возвращение константной ссылки на элемент
+    {
+        return arr_[index];
+    }
+
+    ~Vector()//деструктор
+    {
+        delete[] arr_;
+    }
+
+    //итераторы
+    T* begin() 
+    {
+        return &arr_[0];
+    }
+
+    const T* begin() const 
+    {
+        return &arr_[0];
+    }
+
+    T* end() 
+    {
+        return &arr_[size_];
+    }
+
+    const T* end() const 
+    {
+        return &arr_[size_];
+    }
+
+    //конструкторы для корректного копирования и перемещения вектора
+    Vector(Vector& other) {
+        if (this != &other) {
+            delete[] arr_;
+            arr_ = new T[other.capacity_];
+            for (size_t i = 0; i < other.size_; ++i) arr_[i] = other.arr_[i];
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+        }
+    }
+    Vector(Vector&& other)  noexcept {
+        if (this != &other) {
+            delete[] arr_;
+            arr_ = other.arr_;
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+            other.arr_ = nullptr;
+            other.size_ = other.capacity_ = 0;
+        }
+    }
+
+    //операторы для копирования вектора работающие также как конструкторы
+    Vector& operator=(Vector& other) {
+        if (this != &other) {
+            delete[] arr_;
+            arr_ = new T[other.capacity_];
+            for (size_t i = 0; i < other.size_; ++i) arr_[i] = other.arr_[i];
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+        }
+        return *this;
+    }
+
+    Vector& operator=(Vector&& other) noexcept {
+        if (this != &other) {
+            delete[] arr_;
+            arr_ = other.arr_;
+            size_ = other.size_;
+            capacity_ = other.capacity_;
+            other.arr_ = nullptr;
+            other.size_ = other.capacity_ = 0;
+        }
+        return *this;
+    }
+};
+
+int main()
+{
+    
+}
+
