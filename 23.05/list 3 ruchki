@@ -1,0 +1,43 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+bool is(int n)
+{
+    if (n <= 1)
+    {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    list<int> a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    auto itl = a.begin();
+    while (itl != a.end())
+    {
+        if (is(*itl))
+        {
+            int prime = *itl;
+            itl = a.erase(itl);
+            a.push_front(prime);
+        }
+        else
+        {
+            itl++;
+        }
+    }
+
+    for (int numl : a)
+    {
+        cout << numl << " ";
+    }
+}
