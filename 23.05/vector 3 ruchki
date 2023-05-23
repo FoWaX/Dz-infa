@@ -49,5 +49,4 @@ int main()
     {
         cout << numv << " ";
     }
-    cout << endl;
 }
